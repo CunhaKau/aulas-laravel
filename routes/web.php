@@ -5,7 +5,7 @@ use App\Http\Controllers\ContatosController;
 use Illuminate\Support\Facades\Route;
 
 
-//Rota de contato
+//Rota de contato - Read
 Route::get('/contatos', [ContatosController::class, 'index']) ->name('contatos.index');
 
 //Rota Delete
@@ -16,6 +16,12 @@ Route::get('/contatos/create', [ContatosController::class, 'create'])->name('con
 
 //Rota de Create - método post
 Route::post('/contatos/create', [ContatosController::class, 'create'])->name('contatos.create.post');
+
+//Rota de Update - método get
+Route::get('/contatos/update/{contatoID}', [ContatosController::class, 'update'])->name('contatos.update.get');
+
+//Rota de Update - método put
+Route::put('/contatos/update/{contatoID}', [ContatosController::class, 'update'])->name('contatos.update.put');
 
 
 Route::get('/', function () {

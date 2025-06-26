@@ -6,9 +6,11 @@
 </div>
 
 <div>
-<form action="" method="GET">
+
+<form action="{{ route('contatos.index') }}" method="GET">
 <input type="text" name="pesquisar" placeholder="Digite para buscar" />
-<button>Pesquisar</button>
+<button type="submit">Pesquisar</button>
+
 <a type="button" href="{{ route('contatos.create.get') }}" class="btn btn-success float-end">
     Incluir
 </a>
@@ -34,11 +36,18 @@
            <td>{{ $contato->numero }}</td>   
            <td>{{ $contato->email }}</td>   
            <td>
-            <form action={{ route('contatos.delete', $contato->id) }} method="POST">
+            <form style="display:inline" action={{ route('contatos.delete', $contato->id) }} method="POST">
                 @csrf   
                 @method('DELETE')
             <button type="submit" class="btn btn-danger btn-sm">
                 Excluir
+            </button>
+            </form>
+            <form style="display:inline" action={{ route('contatos.update.get', $contato->id) }} method="POST">
+            @csrf
+            @method('GET')
+            <button type="submit" class="btn btn-primary btn-sm">
+                Alterar
             </button>
             </form>
             </td>

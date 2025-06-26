@@ -14,4 +14,17 @@ class Contatos extends Model
         "numero",
         "email",
     ];
+
+
+    //filtro de pesquisa
+    public function getFiltrosPaginate(string $search = ''){
+        $contato = $this->where(function ($query) use ($search){
+            if($search) {
+                $query->where('nome', $search);
+                $query->orWhere('nome', 'LIKE', "%{$search}%");
+            }
+        })->get();
+        
+        return $contato;
+    }
 }
