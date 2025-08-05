@@ -39,6 +39,7 @@ class UsuariosController extends Controller
             $data  = $request->all();
             User::create(
                 [
+                    "permissao_do_usuario" => $data['permissao_do_usuario'],
                     "name" => $data['name'],
                     "email" => $data['email'],
                     "password" => Hash::make($data['password']),
