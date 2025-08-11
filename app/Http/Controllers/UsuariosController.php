@@ -52,5 +52,26 @@ class UsuariosController extends Controller
         return view('pages.usuarios.create');
     }
 
+    public function update(FormRequestUsuarios $request, $idUser) {
+        if ($request->method() == "PUT") {
+            $data = $request->all();
+            $buscaRegistro = User::find($idUser);
+
+            $update = [
+                 "permissao_do_usuario" => $data['permissao_do_usuario'],
+                 "name" => $data['name'],
+                 "email" => $data['email'],
+                 "password" => Hash::make($data['password']),
+            ];
+            $buscaRegistro->update($update);
+
+            return redirect('usuarios');
+        }
+
+        $findUser = User::where('id', '=', $idUser)->first();
+
+        return view('pages.usuarios.update', compact('findUser'));
+    }
+
 
 }

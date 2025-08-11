@@ -11,10 +11,14 @@
 <input type="text" name="pesquisar" placeholder="Digite para buscar" />
 <button type="submit">Pesquisar</button>
 
+@can('acessoPageContatos', Auth::user())
 <a type="button" href="{{ route('contatos.create.get') }}" class="btn btn-success float-end">
     Incluir
 </a>
+@endcan
+
 </form>
+
 
 <div class="table-responsive mt-4">
 @if ($findContatos->isEmpty())
